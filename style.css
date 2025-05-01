@@ -1,0 +1,583 @@
+/* Fundo com gradiente */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-family: "Gabarito", sans-serif;
+    padding: 0;
+}
+
+/* Logo */
+.logo {
+    text-align: end;
+}
+
+.logo img {
+    width: 20%; /* Reduzido de 40% para 20% */
+    max-width: 150px; /* Define um limite máximo de largura */
+}
+
+/* Centraliza o título */
+.titulo {
+    text-align: center;
+    margin-top: 0; /* Remove o espaçamento superior */
+    margin-bottom: 10px; /* Reduz o espaçamento inferior */
+}
+
+/* Centraliza o conteúdo principal */
+.conteudo-jogo {
+    margin: 0 auto;
+    margin-top: 0; /* Remove o espaçamento superior */
+    padding: 10px; /* Reduzido para economizar espaço */
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Barra de progresso */
+.barra-progresso {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progresso-atual {
+    width: 0;
+    height: 100%;
+    background: #ff1b7b;
+    transition: width 0.3s ease;
+}
+
+/* Botões de resposta */
+.botao-resposta {
+    background: #ff1b7b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botao-resposta:hover {
+    background: #19caca;
+    transform: scale(1.1);
+}
+
+.botao-resposta.correto {
+    background: #4caf50 !important;
+}
+
+.botao-resposta.errado {
+    background: #f44336 !important;
+}
+
+/* Tela final */
+.fim {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #ff1b7b;
+}
+
+.fim span {
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+    color: white;
+}
+
+/* Mensagem de feedback */
+.mensagem {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0;
+    animation: fadeInScale 0.5s ease forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Estilo para a pontuação */
+.pontuacao {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.pontuacao-jogadores {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Reduz o espaçamento inferior */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Estilo para o conteúdo */
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+.progresso {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.pergunta {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.respostas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px; /* Reduz o espaçamento inferior */
+}
+
+.gif-animacao {
+    display: none; /* Oculta o GIF por padrão */
+    text-align: center;
+    margin-top: 10px; /* Reduz o espaçamento superior */
+}
+
+.gif-animacao img {
+    max-width: 200px;
+    border-radius: 10px;
+}
+
+/* Remova as regras relacionadas às logos */
+.logo-esquerda,
+.logo-direita,
+.logos {
+    display: none;
+}
+
+/* Tela inicial do jogo */
+.inicio-jogo {
+    text-align: center;
+    margin-top: 0; /* Remove o espaçamento superior */
+    margin-bottom: 20px; /* Reduz o espaçamento inferior */
+}
+
+.inicio-jogo input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.inicio-jogo button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #ff1b7b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.inicio-jogo button:hover {
+    background-color: #19caca;
+}
+
+/* Contêiner principal */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Lado esquerdo (campos de entrada) */
+.lado-esquerdo {
+    flex: 1;
+    max-width: 300px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+/* Lado direito (jogo) */
+.lado-direito {
+    flex: 2;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+/* Página inicial */
+.pagina-inicial {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.8); /* Fundo escuro */
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pagina-inicial h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ff1b7b; /* Destaque no título */
+}
+
+.pagina-inicial .campo {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.pagina-inicial label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.pagina-inicial input,
+.pagina-inicial select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.pagina-inicial button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #ff1b7b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagina-inicial button:hover {
+    background-color: #19caca;
+    transform: scale(1.05);
+}
+
+/* Quadro de avatares */
+.quadro-avatares {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    color: white;
+}
+
+.quadro-avatares h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #ff1b7b;
+}
+
+/* Grade de avatares */
+.grade-avatares {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 colunas */
+    gap: 10px;
+}
+
+.avatar {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.avatar img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.avatar:hover {
+    border-color: #ff1b7b;
+    transform: scale(1.05);
+}
+
+.avatar.selecionado {
+    border-color: #19caca;
+    transform: scale(1.1);
+}
+
+/* Estilo para jogador */
+.jogador {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar-jogo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+/* Estilo para o footer */
+.footer {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+/* Responsividade para telas menores (tablets e celulares) */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .lado-esquerdo,
+    .lado-direito {
+        max-width: 100%;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .lado-direito {
+        padding: 15px;
+    }
+
+    .pontuacao-jogadores {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .jogador {
+        justify-content: center;
+    }
+
+    .avatar-jogo {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Responsividade para telas pequenas (celulares) */
+@media (max-width: 768px) {
+    .pagina-inicial {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .quadro-avatares {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .grade-avatares {
+        grid-template-columns: repeat(3, 1fr); /* Reduz para 3 colunas */
+        gap: 5px;
+    }
+
+    .avatar img {
+        width: 100%;
+    }
+
+    .conteudo {
+        padding: 10px;
+    }
+
+    .pergunta {
+        font-size: 1.2rem;
+    }
+
+    .botao-resposta {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .fim {
+        padding: 15px;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+    }
+}
+
+/* Responsividade para telas muito pequenas (menos de 480px) */
+@media (max-width: 480px) {
+    .pagina-inicial h2 {
+        font-size: 1.5rem;
+    }
+
+    .quadro-avatares h2 {
+        font-size: 1.2rem;
+    }
+
+    .botao-resposta {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+
+    .avatar img {
+        border-radius: 5px;
+    }
+
+    .pergunta {
+        font-size: 1rem;
+    }
+
+    .pontuacao {
+        font-size: 1rem;
+    }
+
+    .footer {
+        padding: 5px;
+    }
+}
+
+/* Ajustes para telas muito pequenas (menos de 480px) */
+@media (max-height: 480px), (max-width: 480px) {
+    body {
+        font-size: 0.8rem; /* Reduz o tamanho geral da fonte */
+    }
+
+    .pagina-inicial {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    .pagina-inicial h2 {
+        font-size: 1.2rem; /* Reduz o tamanho do título */
+    }
+
+    .pagina-inicial input {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .pagina-inicial button {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .quadro-avatares {
+        padding: 10px;
+    }
+
+    .grade-avatares {
+        grid-template-columns: repeat(2, 1fr); /* Reduz para 2 colunas */
+        gap: 5px;
+    }
+
+    .avatar img {
+        width: 100%;
+    }
+
+    .conteudo {
+        padding: 10px;
+    }
+
+    .pergunta {
+        font-size: 1rem; /* Reduz o tamanho da pergunta */
+    }
+
+    .botao-resposta {
+        padding: 5px 10px;
+        font-size: 0.8rem; /* Reduz o tamanho dos botões */
+    }
+
+    .pontuacao {
+        font-size: 0.9rem; /* Reduz o tamanho da pontuação */
+    }
+
+    .fim {
+        padding: 10px;
+        font-size: 0.9rem; /* Reduz o tamanho do texto final */
+    }
+
+    .footer {
+        font-size: 0.7rem; /* Reduz o tamanho do footer */
+        padding: 5px;
+    }
+
+    .avatar-jogo {
+        width: 30px;
+        height: 30px; /* Reduz o tamanho dos avatares */
+    }
+
+    .barra-progresso {
+        height: 5px; /* Reduz a altura da barra de progresso */
+    }
+}

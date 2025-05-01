@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Prova Online</title>
+</head>
+<body>
+    <!-- Página inicial -->
+    <div class="pagina-inicial">
+        <h2>Bem-vindo ao Jogo!</h2>
+        <form id="form-participantes">
+            <div class="campo" id="campo-jogador1">
+                <label for="jogador1">Nome do Jogador 1:</label>
+                <input type="text" id="jogador1" placeholder="Digite o nome do Jogador 1" required />
+            </div>
+            <div class="campo" id="campo-jogador2" style="display: none;">
+                <label for="jogador2">Nome do Jogador 2:</label>
+                <input type="text" id="jogador2" placeholder="Digite o nome do Jogador 2" required />
+            </div>
+            <button type="submit" style="display: none;">Iniciar Jogo</button>
+        </form>
+
+        <!-- Quadro de avatares -->
+        <div class="quadro-avatares">
+            <h2>Escolha seu Avatar</h2>
+            <div class="grade-avatares">
+                <div class="avatar" data-avatar="https://i.pravatar.cc/100?img=1">
+                    <img src="https://i.pravatar.cc/100?img=1" alt="Avatar 1">
+                </div>
+                <div class="avatar" data-avatar="https://i.pravatar.cc/100?img=2">
+                    <img src="https://i.pravatar.cc/100?img=2" alt="Avatar 2">
+                </div>
+                <div class="avatar" data-avatar="https://i.pravatar.cc/100?img=3">
+                    <img src="https://i.pravatar.cc/100?img=3" alt="Avatar 3">
+                </div>
+                <div class="avatar" data-avatar="https://i.pravatar.cc/100?img=4">
+                    <img src="https://i.pravatar.cc/100?img=4" alt="Avatar 4">
+                </div>
+                <div class="avatar" data-avatar="https://i.pravatar.cc/100?img=5">
+                    <img src="https://i.pravatar.cc/100?img=5" alt="Avatar 5">
+                </div>
+                <div class="avatar" data-avatar="https://i.pravatar.cc/100?img=6">
+                    <img src="https://i.pravatar.cc/100?img=6" alt="Avatar 6">
+                </div>
+                <div class="avatar" data-avatar="https://i.pravatar.cc/100?img=7">
+                    <img src="https://i.pravatar.cc/100?img=7" alt="Avatar 7">
+                </div>
+                <div class="avatar" data-avatar="https://i.pravatar.cc/100?img=8">
+                    <img src="https://i.pravatar.cc/100?img=8" alt="Avatar 8">
+                </div>
+                <div class="avatar" data-avatar="https://i.pravatar.cc/100?img=9">
+                    <img src="https://i.pravatar.cc/100?img=9" alt="Avatar 9">
+                </div>
+                <div class="avatar" data-avatar="https://i.pravatar.cc/100?img=10">
+                    <img src="https://i.pravatar.cc/100?img=10" alt="Avatar 10">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Página do jogo -->
+    <div class="container" style="display: none;">
+        <div class="lado-esquerdo">
+            <div class="pontuacao-jogadores">
+                <div class="jogador">
+                    <img id="avatar-jogador1" src="" alt="Avatar Jogador 1" class="avatar-jogo">
+                    <span id="jogador1-info">Jogador 1: 0 pontos</span>
+                </div>
+                <div class="jogador">
+                    <img id="avatar-jogador2" src="" alt="Avatar Jogador 2" class="avatar-jogo">
+                    <span id="jogador2-info">Jogador 2: 0 pontos</span>
+                </div>
+            </div>
+        </div>
+        <div class="lado-direito">
+            <div class="conteudo-jogo">
+                <section class="questionario">
+                    <div class="conteudo">
+                        <span class="progresso"></span>
+                        <div class="barra-progresso">
+                            <div class="progresso-atual"></div>
+                        </div>
+                        <span class="pontuacao">Pontuação: 0</span>
+                        <span class="pergunta"></span>
+                        <div class="respostas"></div>
+                        <div class="mensagem"></div>
+                        <div class="gif-animacao"></div>
+                    </div>
+                    <div class="fim" style="display: none;">
+                        <span></span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Prova Online. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Cleverson de Oliveira Pereira.</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
+
+
