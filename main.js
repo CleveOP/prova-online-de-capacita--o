@@ -1915,6 +1915,9 @@ const mensagemElemento = document.querySelector(".mensagem");
 const pontuacaoElemento = document.querySelector(".pontuacao");
 const gifAnimacao = document.querySelector(".gif-animacao");
 
+// Elemento para mostrar de quem é a vez
+const vezElemento = document.querySelector(".vez-jogador");
+
 const gifsUsadosAcerto = [];
 const gifsUsadosErro = [];
 
@@ -1998,6 +2001,11 @@ function embaralharArray(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
+// Função para atualizar a vez do jogador
+function atualizarVezJogador() {
+    vezElemento.textContent = `Vez de: ${jogadorAtual === 1 ? jogador1 : jogador2}`;
+}
+
 // Função para carregar uma nova pergunta
 function carregarPergunta() {
     const perguntaAtual = perguntas[indiceAtual];
@@ -2019,10 +2027,24 @@ function carregarPergunta() {
     window.respostasEmbaralhadas = respostasEmbaralhadas;
 
     atualizarBarraProgresso();
+    atualizarVezJogador(); // Atualiza a vez do jogador
+    desbloquearRespostas(); // Garante que os botões estejam habilitados
 }
 
-// Modifique a função verificarResposta para usar o array global
+// Função para bloquear os botões de resposta
+function bloquearRespostas() {
+    document.querySelectorAll(".botao-resposta").forEach(btn => btn.disabled = true);
+}
+
+// Função para desbloquear os botões de resposta
+function desbloquearRespostas() {
+    document.querySelectorAll(".botao-resposta").forEach(btn => btn.disabled = false);
+}
+
+// Modifique a função verificarResposta para bloquear os botões após resposta
 async function verificarResposta(indiceResposta) {
+    bloquearRespostas(); // Bloqueia os botões após clicar
+
     const resposta = window.respostasEmbaralhadas[indiceResposta];
     gifAnimacao.innerHTML = "";
 
