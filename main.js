@@ -2001,47 +2001,23 @@ function embaralharArray(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
-// Função para atualizar a vez do jogador
+
 function atualizarVezJogador() {
-    vezElemento.textContent = `Vez de: ${jogadorAtual === 1 ? jogador1 : jogador2}`;
+    const vezElemento = document.querySelector(".vez-jogador");
+    if (jogadorAtual === 1) {
+        vezElemento.textContent = `É a vez de: ${jogador1}`;
+    } else {
+        vezElemento.textContent = `É a vez de: ${jogador2}`;
+    }
 }
 
-// Função para carregar uma nova pergunta
-function carregarPergunta() {
-    const perguntaAtual = perguntas[indiceAtual];
-    progressoElemento.textContent = `${indiceAtual + 1}/${perguntas.length}`;
-    perguntaElemento.textContent = perguntaAtual.pergunta;
-
-    // Embaralha as respostas antes de exibi-las
-    const respostasEmbaralhadas = embaralharArray([...perguntaAtual.respostas]);
-
-    respostasElemento.innerHTML = respostasEmbaralhadas
-        .map((resposta, i) => `
-            <button class="botao-resposta" onclick="verificarResposta(${i})">
-                ${resposta.opcao}
-            </button>
-        `)
-        .join("");
-
-    // Armazena as respostas embaralhadas globalmente para uso na verificação
-    window.respostasEmbaralhadas = respostasEmbaralhadas;
-
-    atualizarBarraProgresso();
-    atualizarVezJogador(); // Atualiza a vez do jogador
-    desbloquearRespostas(); // Garante que os botões estejam habilitados
+// Sempre que mudar de jogador, chame:
+function trocarJogador() {
+    jogadorAtual = jogadorAtual === 1 ? 2 : 1;
+    atualizarVezJogador();
 }
 
-// Função para bloquear os botões de resposta
-function bloquearRespostas() {
-    document.querySelectorAll(".botao-resposta").forEach(btn => btn.disabled = true);
-}
-
-// Função para desbloquear os botões de resposta
-function desbloquearRespostas() {
-    document.querySelectorAll(".botao-resposta").forEach(btn => btn.disabled = false);
-}
-
-// Modifique a função verificarResposta para bloquear os botões após resposta
+// Exemplo de uso após cada resposta:
 async function verificarResposta(indiceResposta) {
     bloquearRespostas(); // Bloqueia os botões após clicar
 
@@ -2097,6 +2073,41 @@ async function verificarResposta(indiceResposta) {
     }, 2000);
 }
 
+// Função para carregar uma nova pergunta
+function carregarPergunta() {
+    const perguntaAtual = perguntas[indiceAtual];
+    progressoElemento.textContent = `${indiceAtual + 1}/${perguntas.length}`;
+    perguntaElemento.textContent = perguntaAtual.pergunta;
+
+    // Embaralha as respostas antes de exibi-las
+    const respostasEmbaralhadas = embaralharArray([...perguntaAtual.respostas]);
+
+    respostasElemento.innerHTML = respostasEmbaralhadas
+        .map((resposta, i) => `
+            <button class="botao-resposta" onclick="verificarResposta(${i})">
+                ${resposta.opcao}
+            </button>
+        `)
+        .join("");
+
+    // Armazena as respostas embaralhadas globalmente para uso na verificação
+    window.respostasEmbaralhadas = respostasEmbaralhadas;
+
+    atualizarBarraProgresso();
+    atualizarVezJogador(); // Atualiza a vez do jogador
+    desbloquearRespostas(); // Garante que os botões estejam habilitados
+}
+
+// Função para bloquear os botões de resposta
+function bloquearRespostas() {
+    document.querySelectorAll(".botao-resposta").forEach(btn => btn.disabled = true);
+}
+
+// Função para desbloquear os botões de resposta
+function desbloquearRespostas() {
+    document.querySelectorAll(".botao-resposta").forEach(btn => btn.disabled = false);
+}
+
 // Função para atualizar a barra de progresso
 function atualizarBarraProgresso() {
     const progressoAtual = ((indiceAtual + 1) / perguntas.length) * 100;
@@ -2128,8 +2139,9 @@ const botaoIniciar = document.querySelector("button[type='submit']");
 let jogador1 = "";
 let jogador2 = "";
 let avatar1 = "";
-let avatar2;
+let avatar2 = "";
 let jogadorEscolhendo = 1; // Começa com o Jogador 1
+let jogadorAtual = 1; // 1 ou 2
 
 // Atualiza os eventos de clique nos avatares
 function atualizarEventosAvatares() {
@@ -2286,4 +2298,5 @@ window.onload = () => {
     renderizarAvatares();
     embaralharPerguntas();
     carregarPergunta();
+    atualizarVezJogador(); // Adicionando a chamada para atualizar a vez do jogador
 };
